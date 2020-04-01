@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zl.ssm.mapper.UserMapper">
+
+    <!-- 插入语句 -->
+  	<insert  id="insertUserInfo" parameterType="cn.zl.ssm.pojo.User"
+  	keyProperty="id"  keyColumn="id"  useGeneratedKeys="true">
+  		insert into t_user(realname,username,password,jobid,deptno,phone,email,regTime) values(#{realname},#{username},#{password},#{jobid},#{deptno},#{phone},#{email},#{regTime})
+ 	</insert>
+    <!-- 查询语句 -->
+  	<select  id="selectByUserId" parameterType="integer" resultType="cn.zl.ssm.pojo.User">
+  		select * from t_user where id = #{id}
+  	</select>
+  	<!-- 查询语句，返回集合 -->
+   	<select id="selectAllUser" resultType="cn.zl.ssm.pojo.User">
+   		select * from t_user
+   	</select>
+   	<!-- 删除语句 -->
+   	<delete id="deleteByUserId" parameterType="integer">
+   		delete from t_user where id =#{id}
+   	</delete>
+   	<!-- 修改语句 -->
+   	<update id="updateByUserId" parameterType="cn.zl.ssm.pojo.User">
+   		update t_user set realname=#{realname},username=#{username},password=#{password},jobid=#{jobid},deptno=#{deptno},phone=#{phone},email=#{email},regTime=#{regTime} where id=#{id} 
+   	</update>
+   
+</mapper>
